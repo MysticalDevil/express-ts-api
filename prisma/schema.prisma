@@ -12,7 +12,7 @@ datasource db {
 
 model Author {
   id        Int      @id @default(autoincrement())
-  createAt  DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   firstName String
   lastName  String
@@ -20,12 +20,12 @@ model Author {
 }
 
 model Book {
-  id           Int      @id @default(autoincrement())
-  createAt     DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  title        String
-  isFiction    Boolean
-  dataPubished DateTime
-  author       Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId     Int
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String
+  isFiction     Boolean
+  datePublished DateTime
+  author        Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId      Int
 }
