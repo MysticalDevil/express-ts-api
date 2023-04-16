@@ -6,7 +6,7 @@ import * as AuthorService from './author.server'
 
 export const authorRouter = express.Router()
 
-// Get: List of all Authors
+// GET: List of all authors
 authorRouter.get('/', async (request: Request, response: Response) => {
   try {
     const authors = await AuthorService.listAuthors()
@@ -30,7 +30,7 @@ authorRouter.get('/:id', async (request: Request, response: Response) => {
   }
 })
 
-// POST: Create a Author
+// POST: Create a author
 // Params: firstName, lastName
 authorRouter.post('/', body('firstName').isString(), body('lastName').isString(), async (request: Request, response: Response) => {
   const errors = validationResult(request)
@@ -47,7 +47,7 @@ authorRouter.post('/', body('firstName').isString(), body('lastName').isString()
   }
 })
 
-// PUT: Update an Author based on the id
+// PUT: Update an author based on the id
 authorRouter.put('/:id', body('firstName').isString(), body('lastName').isString(), async (request: Request, response: Response) => {
   const errors = validationResult(request)
   if (!errors.isEmpty()) {
@@ -65,7 +65,7 @@ authorRouter.put('/:id', body('firstName').isString(), body('lastName').isString
   }
 })
 
-// DELETE: Delete an Author based on the id
+// DELETE: Delete an author based on the id
 authorRouter.delete('/:id', async (request: Request, response: Response) => {
   const id = parseInt(request.params.id)
   try {
