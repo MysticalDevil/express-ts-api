@@ -3,7 +3,7 @@ import type { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
 
 import * as BookService from './book.server'
-import { formatResponse } from '../middlewares/response.middleware'
+import { formatResponse } from '../middlewares/response.format'
 
 export const bookRouter = express.Router()
 
