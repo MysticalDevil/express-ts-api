@@ -13,6 +13,7 @@ authorRouter.get('/', async (request: Request, response: Response) => {
     const authors = await AuthorService.listAuthors()
     return response.status(200).json(formatResponse(authors, null, 200))
   } catch (error: any) {
+    request.log.error(error.message)
     return response.status(500).json(formatResponse(null, error.message, 500))
   }
 })
@@ -27,7 +28,8 @@ authorRouter.get('/:id', async (request: Request, response: Response) => {
     }
     return response.status(404).json(formatResponse(null, 'Author could not found', 404))
   } catch (error: any) {
-    return response.status(500).json(formatResponse(null, error.message, 500))
+    request.log.error(error.message)
+    return response.status(500).json(formatResponse(null, null, 500))
   }
 })
 
@@ -44,6 +46,7 @@ authorRouter.post('/', body('firstName').isString(), body('lastName').isString()
     const newAuthor = await AuthorService.createAuthor(author)
     return response.status(201).json(formatResponse(newAuthor, null, 201))
   } catch (error: any) {
+    request.log.error(error.message)
     return response.status(500).json(formatResponse(null, error.message, 500))
   }
 })
@@ -62,6 +65,7 @@ authorRouter.put('/:id', body('firstName').isString(), body('lastName').isString
     const updateAuthor = await AuthorService.updateAuthor(author, id)
     return response.status(201).json(formatResponse(updateAuthor, null, 201))
   } catch (error: any) {
+    request.log.error(error.message)
     return response.status(500).json(formatResponse(null, error.message, 500))
   }
 })
@@ -73,6 +77,7 @@ authorRouter.delete('/:id', async (request: Request, response: Response) => {
     await AuthorService.deleteAuthor(id)
     return response.status(204).json(formatResponse(null, null, 204))
   } catch (error: any) {
+    request.log.error(error.message)
     return response.status(500).json(formatResponse(null, error.message, 500))
   }
 })
