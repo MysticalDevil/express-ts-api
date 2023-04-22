@@ -55,7 +55,6 @@ const logger = Pino.pino({
 
 export const httpLogger = PinoHttp.pinoHttp({
   logger,
-  quietReqLogger: true,
   serializers: {
     req: Pino.stdSerializers.req,
     res: Pino.stdSerializers.res,
@@ -72,12 +71,5 @@ export const httpLogger = PinoHttp.pinoHttp({
     }
     return 'info'
   },
-  transport: {
-    target: 'pino-http-print', // use the pino-http-print transport and its formatting output
-    options: {
-      destination: 1,
-      all: true,
-      translateTime: true
-    }
-  }
-}, transport)
+  transport
+})
